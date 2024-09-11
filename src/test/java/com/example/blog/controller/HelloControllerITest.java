@@ -1,4 +1,4 @@
-package com.example.rest_01_demo.controller;
+package com.example.blog.controller;
 
 import org.junit.jupiter.api.Test;
 

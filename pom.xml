@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.2</version>
+		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>roadmap-blogging-platform-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>roadmap-blogging-platform-api</name>
-	<description>Demo project for Spring Boot</description>
+	<description>RoadMap.sh Blogging Platform API</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -42,6 +42,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.34</version>
 		</dependency>
 	</dependencies>
 

@@ -1,4 +1,4 @@
-package com.example.rest_01_demo.controller;
+package com.example.blog.controller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
