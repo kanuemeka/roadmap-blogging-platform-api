@@ -1,26 +1,24 @@
 package com.example.blog.controller;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 @Builder
-public class PostBlogResponse {
+public class BlogRequest {
 
-    private Long id;
-
+    @NotEmpty
     private String title;
 
+    @NotEmpty
     private String content;
 
+    @NotEmpty
     private String category;
 
+    @NotEmpty
     private List<String> tags;
-
-    private Date createdAt;
-
-    private Date updatedAt;
 }

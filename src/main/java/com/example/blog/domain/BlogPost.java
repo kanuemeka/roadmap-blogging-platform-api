@@ -2,6 +2,7 @@ package com.example.blog.domain;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @Builder
 public class BlogPost {
 
-    private Long id;
+    @Id
+    private String id;
 
     private String title;
 
