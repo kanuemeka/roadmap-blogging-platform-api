@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Date;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -282,5 +282,24 @@ public class BlogPostControllerTest {
     public void shouldDeleteBlogSuccessfully() throws Exception {
         String id = "1L";
 
+        doNothing().when(blogPostDeleter).deleteBlogPost(id);
+
+        mvc.perform(MockMvcRequestBuilders.delete("/posts/{id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void shouldFailDeleteWhenBlogNotFound() throws Exception {
+        String id = "1L";
+
+        doThrow(BlogNotFoundException.class).when(blogPostDeleter).deleteBlogPost(id);
+
+        mvc.perform(MockMvcRequestBuilders.delete("/posts/{id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }

@@ -73,6 +73,13 @@ public class BlogPostController {
         return ResponseEntity.ok(blogResponses);
     }
 
+    @DeleteMapping("/posts/{id}")
+    public ResponseEntity deleteBlog(@PathVariable("id") String id) {
+        blogPostDeleter.deleteBlogPost(id);
+
+        return ResponseEntity.ok().build();
+    }
+
     private static BlogResponse mapBlogPostToBlogResponse(BlogPost blogPost) {
         return BlogResponse.builder()
         .id(blogPost.getId())
