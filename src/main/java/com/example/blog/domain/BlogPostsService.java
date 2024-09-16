@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class BlogPostsService implements BlogPostCreator, BlogPostUpdator, BlogPostRetriever, BlogPostsRetriever, BlogPostsSearcher {
+public class BlogPostsService implements BlogPostCreator, BlogPostUpdator, BlogPostRetriever, BlogPostsRetriever, BlogPostsSearcher, BlogPostDeleter {
 
     private final BlogRepository blogRepository;
 
@@ -64,5 +64,11 @@ public class BlogPostsService implements BlogPostCreator, BlogPostUpdator, BlogP
         }
         return blogPosts;
 
+    }
+
+    @Override
+    public void deleteBlogPost(String id) {
+        BlogPost blogPost = getBlogPost(id);
+        blogRepository.deleteById(blogPost.getId());
     }
 }

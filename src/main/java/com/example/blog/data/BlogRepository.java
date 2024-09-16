@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface BlogRepository extends MongoRepository<BlogPost, String> {
 
-//    List<BlogPost> findBlogPostsByTitleLikeOOrCategoryLikeOrContentLike(String title, String category, String content);
-
     @Query("{ $or: [{ title: { $regex: '?0', $options: \"si\"} }, { content: { $regex: '?0', $options: \"si\" } }, {catergory: { $regex: '?0', $options: \"si\" } }]}")
     List<BlogPost> findAllByTitleContentOrCategory(String queryTerm);
 }

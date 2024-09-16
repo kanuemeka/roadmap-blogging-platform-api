@@ -24,6 +24,8 @@ public class BlogPostController {
 
     private final BlogPostsSearcher blogPostsSearcher;
 
+    private final BlogPostDeleter blogPostDeleter;
+
     @PostMapping("/posts")
     public ResponseEntity<BlogResponse> postBlog(@Valid @RequestBody BlogRequest blogRequest) {
 

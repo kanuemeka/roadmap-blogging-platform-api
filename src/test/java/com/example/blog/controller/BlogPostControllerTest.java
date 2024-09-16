@@ -1,9 +1,6 @@
 package com.example.blog.controller;
 
-import com.example.blog.controller.adapters.BlogPostCreator;
-import com.example.blog.controller.adapters.BlogPostRetriever;
-import com.example.blog.controller.adapters.BlogPostUpdator;
-import com.example.blog.controller.adapters.BlogPostsRetriever;
+import com.example.blog.controller.adapters.*;
 import com.example.blog.domain.BlogPost;
 import com.example.blog.exceptions.BlogNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,6 +41,12 @@ public class BlogPostControllerTest {
 
     @MockBean
     private BlogPostsRetriever blogPostsRetriever;
+
+    @MockBean
+    private BlogPostsSearcher blogPostsSearcher;
+
+    @MockBean
+    private BlogPostDeleter blogPostDeleter;
 
     @Test
     public void shouldPostBlogSuccessfully() throws Exception {
@@ -273,5 +276,11 @@ public class BlogPostControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/posts")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void shouldDeleteBlogSuccessfully() throws Exception {
+        String id = "1L";
+
     }
 }

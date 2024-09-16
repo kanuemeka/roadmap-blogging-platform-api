@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -237,5 +238,41 @@ public class BlogPostServiceTest {
         assertNotNull(blogPosts);
         assertEquals(0, blogPosts.size());
 
+    }
+
+    @Test
+    public void shouldDeleteBlogPost(){
+        String id = "randomId";
+        String title = "title";
+        String content = "content";
+        String category = "category";
+        List<String> tags = List.of("tag1", "tag2");
+
+        BlogPost blogPost
+                = BlogPost.builder()
+                .id(id)
+                .title(title)
+                .content(content)
+                .category(category)
+                .tags(tags)
+                .created(new Date())
+                .updated(new Date())
+                .build();
+
+        when(blogRepository.findById(any(String.class))).thenReturn(Optional.of(blogPost));
+        doNothing().when(blogRepository).deleteById(blogPost.getId());
+
+        blogPostService.deleteBlogPost(id);
+    }
+
+    @Test
+    public void shouldFailDeleteBlogPost(){
+        String id = "randomId";
+
+        when(blogRepository.findById(any(String.class))).thenReturn(Optional.empty());
+
+        assertThrows(BlogNotFoundException.class, () -> {
+            blogPostService.deleteBlogPost(id);
+        });
     }
 }
